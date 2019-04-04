@@ -5,7 +5,7 @@ The charset is restricted to a-z (0-25), and the blocksize is 3 characters
 
 class RSA():
 
-    BLOCKSIZE = 3 # Number of chars in a given block
+    BLOCKSIZE = 4 # Number of chars in a given block
 
     
     def __init__(self, n, d):
@@ -49,8 +49,8 @@ class RSA():
     
     def decrypt(self, cipher_text):
         message = []
-
-        for block in cipher_text:
+    
+        for j, block in enumerate(cipher_text):
             
             bin_d = str(bin(self.d))[2:]
             M = 1
@@ -61,7 +61,7 @@ class RSA():
                     M = ((M*block)%self.n)
                     
             message.append(str(M).zfill(self.BLOCKSIZE*2))
-        
+
         return RSA.int_to_message(message)
         
     def message_to_int(message):
@@ -79,10 +79,14 @@ class RSA():
             for i in range(0,RSA.BLOCKSIZE*2,2):
                 the_int = int(block[i] + block[i+1])
                 message += chr(the_int + 97)
-            
         return message
 
 if __name__ == "__main__":
-    x = RSA.encrypt("testing testing", 5, 16900783)
-    print(x)
+
+    ints = """1096437423 0767457076 1935664384 0720266424 0258812901 0444046729 1785741988 0861588844 1076149385 0519431291 0444046729 1785741988 1118762727 0923933524 0854697562 0928218436 1297924026""".replace("\n", " ").split()
+    
+    ints = [int(i) for i in ints]
+
+    a = RSA(2219818109, 468418285)
+    print(a.decrypt(ints))
 
