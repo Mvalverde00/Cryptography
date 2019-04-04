@@ -1,4 +1,3 @@
-
 def bruteforce(string):
     for radius in range(2,len(string)//2):
         print("With radius " + str(radius))
@@ -20,6 +19,6 @@ def bruteforce(string):
 
                 
 
-string = "CLNGTDHOBOABTCLTFLNTRHOUHTEGIEEDCEHMROAFEKRESANKIGWEPDDSIROISRTUONSOTTO"
+string = "CLNGTDHOBOABTCLTFLNTRHOUHTEGIEEDCEHMROAFEKRESANKIGWEPEDSIROISRTUONSOTTO"
 bruteforce(string)
 
